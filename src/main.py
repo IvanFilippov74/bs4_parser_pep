@@ -13,7 +13,7 @@ from utils import find_tag, get_response
 
 
 def whats_new(session):
-    '''Функция выгрузки перечня версий Python.'''
+    """Функция выгрузки перечня версий Python."""
     whats_new_url = urljoin(MAIN_DOC_URL, 'whatsnew/')
     response = session.get(whats_new_url)
     response.encoding = 'utf-8'
@@ -46,7 +46,7 @@ def whats_new(session):
 
 
 def latest_versions(session):
-    '''Выгрузка документации для версиий Python.'''
+    """Выгрузка документации для версиий Python."""
     response = session.get(MAIN_DOC_URL)
     response.encoding = 'utf-8'
     response = get_response(session, MAIN_DOC_URL)
@@ -77,7 +77,7 @@ def latest_versions(session):
 
 
 def download(session):
-    '''Скачивание архива документации для последней версии Python.'''
+    """Скачивание архива документации для последней версии Python."""
     downloads_url = urljoin(MAIN_DOC_URL, 'download.html')
     response = session.get(downloads_url)
     response.encoding = 'utf-8'
@@ -100,20 +100,19 @@ def download(session):
 
 
 def pep(session):
-    '''Поиск статусов PEP документации Python.'''
+    """Поиск статусов PEP документации Python."""
     response = session.get(PEP_DOC_URL)
     response.encoding = 'utf-8'
     response = get_response(session, PEP_DOC_URL)
     if response is None:
         return
-    total_status = 0
     soup = BeautifulSoup(response.text, features='lxml')
     index_category = soup.find('section', attrs={'id': 'numerical-index'})
     tbody = index_category.find('tbody')
     tr = tbody.find_all('tr')
     count_status = {}
     results = [('Статус', 'Количество')]
-    for href in tqdm(tr[:2], desc='Обработка страниц.'):
+    for href in tqdm(tr, desc='Обработка страниц.'):
         td = href.find('td').text[1:]
         a = href.find('a')['href']
         pep_link = urljoin(PEP_DOC_URL, a)
@@ -124,7 +123,7 @@ def pep(session):
             continue
         soup = BeautifulSoup(response.text, features='lxml')
         field_list = soup.find(
-            'dl', class_='rfc2822 field-list simple'
+            'dl', class_='field-list'
         )
         pep_status = field_list.abbr
         count_status[pep_status.text] = count_status.get(
@@ -138,8 +137,7 @@ def pep(session):
             )
     for count in count_status:
         results.append((count, count_status[count]))
-        total_status += count_status[count]
-    results.append(('Всего', total_status))
+    results.append(('Всего', sum(count_status.values())))
     return results
 
 

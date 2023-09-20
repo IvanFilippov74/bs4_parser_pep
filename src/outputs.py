@@ -8,7 +8,7 @@ from constants import BASE_DIR, DATETIME_FORMAT
 
 
 def control_output(results, cli_args):
-    '''Функция выбора вывода результатов.'''
+    """Функция выбора вывода результатов."""
     output = cli_args.output
     if output == 'pretty':
         pretty_output(results)
@@ -19,13 +19,13 @@ def control_output(results, cli_args):
 
 
 def default_output(results):
-    '''Функция вывода результата в строчном формате.'''
+    """Функция вывода результата в строчном формате."""
     for row in results:
         print(*row)
 
 
 def pretty_output(results):
-    '''Функция вывода результата в табличном формате.'''
+    """Функция вывода результата в табличном формате."""
     table = PrettyTable()
     table.field_names = results[0]
     table.align = 'l'
@@ -34,7 +34,7 @@ def pretty_output(results):
 
 
 def file_output(results, cli_args):
-    '''Функция записи результата в файл.'''
+    """Функция записи результата в файл."""
     results_dir = BASE_DIR / 'results'
     results_dir.mkdir(exist_ok=True)
     parser_mode = cli_args.mode

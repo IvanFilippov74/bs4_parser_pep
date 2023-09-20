@@ -1,7 +1,7 @@
 ## PEP documentation parser of Python - Парсер документации для языка Python.
 
 ### Описание:
-Проект созданный для парсинга документации языка прогроммирования Python. Реализованны строчный и табличный выводы в терминал, а так же сохранение результатов в файл .csv.
+Проект созданный для парсинга документации языка программирования Python. Реализованны строчный и табличный выводы в терминал, а так же сохранение результатов в файл .csv.
 
 ### Технологии :
 ![Python](https://img.shields.io/badge/Python-3.7-blue) ![beautifulsoup4](https://img.shields.io/badge/beautifulsoup4-4.9.3-blue) ![requests-cache](https://img.shields.io/badge/requests_cache-1.0-blue) ![tqdm](https://img.shields.io/badge/Docker-4.61-blue) ![prettytable](https://img.shields.io/badge/prettytable-2.1-blue) 
@@ -59,7 +59,7 @@ optional arguments:
 ```bash
 python main.py {whats-new,latest-versions,download,pep}
 ```
-По мере необходимести можете выбрать режим отображения ответа (-o, --output), в виде таблицы (pretty) или с выгрузкой в файл (file). Например:
+По мере необходимости можете выбрать режим отображения ответа (-o, --output), в виде таблицы (pretty) или с выгрузкой в файл (file). Например:
 ```bash
 python main.py pep -o pretty
 ```
@@ -68,5 +68,5 @@ python main.py pep -o pretty
 python main.py pep -c
 ```
 ### Авторы:
-Filippov Ivan
+Filippov Ivan<br>
 <a href="https://github.com/IvanFilippov74"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a>
